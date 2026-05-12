@@ -1,0 +1,474 @@
+/* jeanmarcholl.com — design tokens & shared styles (v3)
+   "Argile" — épuré, type Apple/OpenAI. Single family: Geist.
+   ---------------------------------------------------------------- */
+
+:root {
+  /* Default palette: Argile */
+  --bg: #FAFAF7;
+  --bg-alt: #F1EFEA;
+  --bg-deep: #E6E2D8;
+  --bg-dark: #1A1814;
+  --ink: #1A1814;
+  --ink-soft: #5C5851;
+  --ink-mute: #93908A;
+  --rule: #E4E0D5;
+  --accent: #8A7F6C;
+  --accent-soft: #B5AC9A;
+}
+
+:root[data-palette="argile"] {
+  --bg: #FAFAF7; --bg-alt: #F1EFEA; --bg-deep: #E6E2D8;
+  --bg-dark: #1A1814;
+  --ink: #1A1814; --ink-soft: #5C5851; --ink-mute: #93908A;
+  --rule: #E4E0D5; --accent: #8A7F6C; --accent-soft: #B5AC9A;
+}
+:root[data-palette="terre"] {
+  --bg: #F4EEE3; --bg-alt: #EBE3D3; --bg-deep: #E0D5BD;
+  --bg-dark: #2A2118;
+  --ink: #2A2118; --ink-soft: #6A5D4E; --ink-mute: #93887A;
+  --rule: #D8CDB8; --accent: #A85A3C; --accent-soft: #C5896B;
+}
+:root[data-palette="lin"] {
+  --bg: #F1ECE2; --bg-alt: #E6DFCF; --bg-deep: #DBD1BB;
+  --bg-dark: #2A2520;
+  --ink: #36302A; --ink-soft: #7A6F62; --ink-mute: #A39988;
+  --rule: #D4CBB7; --accent: #8C6A45; --accent-soft: #B49677;
+}
+:root[data-palette="sauge"] {
+  --bg: #EDEBE0; --bg-alt: #E1DECF; --bg-deep: #D4D2C0;
+  --bg-dark: #1F221E;
+  --ink: #2C302A; --ink-soft: #6A6E62; --ink-mute: #969A8E;
+  --rule: #C8CCBA; --accent: #6F7A66; --accent-soft: #99A18F;
+}
+:root[data-palette="brume"] {
+  --bg: #EFECE5; --bg-alt: #E3DFD4; --bg-deep: #DAD5C7;
+  --bg-dark: #1F1E1A;
+  --ink: #2B2A26; --ink-soft: #6E6B62; --ink-mute: #97948B;
+  --rule: #CECABD; --accent: #6E6356; --accent-soft: #9A8E7D;
+}
+
+/* --- Base --- */
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+html, body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Geist", ui-sans-serif, -apple-system, system-ui, sans-serif;
+  font-feature-settings: "ss01", "cv01";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-size: 16px;
+  line-height: 1.55;
+  letter-spacing: -0.005em;
+}
+@media (min-width: 768px) {
+  body { font-size: 17px; line-height: 1.6; }
+}
+
+::selection { background: var(--ink); color: var(--bg); }
+
+/* --- Typography --- */
+.font-display {
+  font-family: "Geist", sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 0.95;
+}
+.font-display-bold {
+  font-family: "Geist", sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  line-height: 0.94;
+}
+.font-display-light {
+  font-family: "Geist", sans-serif;
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  line-height: 1.0;
+}
+.font-mono {
+  font-family: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+.eyebrow {
+  font-family: "Geist", sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  font-weight: 500;
+  color: var(--ink-mute);
+  display: inline-flex;
+  align-items: center;
+}
+.eyebrow .sep {
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background: var(--ink-mute);
+  margin-right: 10px;
+}
+
+.tag {
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  font-weight: 400;
+}
+
+/* --- Layout primitives --- */
+.col {
+  width: 100%; max-width: 760px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.col-wide {
+  width: 100%; max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.col-xwide {
+  width: 100%; max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+@media (min-width: 768px) {
+  .col, .col-wide, .col-xwide { padding: 0 40px; }
+}
+@media (min-width: 1280px) {
+  .col-xwide { padding: 0 64px; }
+}
+
+/* Spacing */
+.section { padding: 80px 0; }
+@media (min-width: 768px) { .section { padding: 120px 0; } }
+.section-lg { padding: 96px 0; }
+@media (min-width: 768px) { .section-lg { padding: 160px 0; } }
+.section-sm { padding: 56px 0; }
+@media (min-width: 768px) { .section-sm { padding: 80px 0; } }
+
+/* --- Sticky nav --- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--bg) 78%, transparent);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  transition: background 220ms ease, border-color 220ms ease;
+  border-bottom: 1px solid transparent;
+}
+.site-header.scrolled {
+  border-bottom-color: var(--rule);
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+@media (min-width: 768px) {
+  .nav-inner { height: 72px; }
+}
+.nav-logo {
+  font-family: "Geist", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  color: var(--ink);
+}
+.nav-link {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: color 180ms ease, background 180ms ease;
+}
+.nav-link:hover { color: var(--ink); background: var(--bg-alt); }
+.nav-link.active { color: var(--ink); }
+
+/* --- CTA system --- */
+a { color: inherit; }
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6ch;
+  font-family: "Geist", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+  color: var(--bg);
+  background: var(--ink);
+  text-decoration: none;
+  padding: 13px 22px;
+  border-radius: 999px;
+  transition: opacity 200ms ease, gap 220ms ease;
+}
+.cta:hover { opacity: 0.85; gap: 0.95ch; }
+.cta .arrow {
+  display: inline-block;
+  transition: transform 260ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.cta:hover .arrow { transform: translateX(2px); }
+
+.cta-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6ch;
+  font-family: "Geist", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--ink);
+  background: var(--bg-alt);
+  text-decoration: none;
+  padding: 13px 22px;
+  border-radius: 999px;
+  transition: background 180ms ease, gap 220ms ease;
+}
+.cta-ghost:hover { background: var(--bg-deep); gap: 0.95ch; }
+.cta-ghost .arrow {
+  display: inline-block;
+  transition: transform 260ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.cta-ghost:hover .arrow { transform: translateX(2px); }
+
+.arrow-link {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.45ch;
+  text-decoration: none;
+  font-weight: 500;
+  color: var(--ink);
+  transition: gap 200ms ease, color 200ms ease;
+}
+.arrow-link::after {
+  content: "→";
+  font-family: "Geist Mono", monospace;
+  font-weight: 400;
+  display: inline-block;
+  transition: transform 240ms cubic-bezier(0.2,0.7,0.2,1);
+}
+.arrow-link:hover { gap: 0.85ch; color: var(--accent); }
+.arrow-link:hover::after { transform: translateX(3px); }
+
+.link-underline {
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  padding-bottom: 1px;
+  transition: color 200ms ease;
+}
+.link-underline:hover { color: var(--accent); }
+
+/* --- Card --- */
+.card {
+  background: var(--bg-alt);
+  border-radius: 16px;
+  padding: 32px;
+  transition: background 220ms ease;
+}
+@media (min-width: 768px) {
+  .card { padding: 48px; border-radius: 24px; }
+}
+@media (min-width: 1024px) {
+  .card { padding: 56px; }
+}
+.card:hover { background: var(--bg-deep); }
+
+.card-dark {
+  background: var(--bg-dark);
+  color: var(--bg);
+  border-radius: 16px;
+  padding: 32px;
+}
+@media (min-width: 768px) {
+  .card-dark { padding: 48px; border-radius: 24px; }
+}
+@media (min-width: 1024px) {
+  .card-dark { padding: 64px; }
+}
+
+/* --- Photo card --- */
+.portrait {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-alt);
+  border-radius: 16px;
+}
+@media (min-width: 768px) {
+  .portrait { border-radius: 20px; }
+}
+.portrait img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* --- Pill --- */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6ch;
+  font-family: "Geist", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  color: var(--ink-soft);
+  background: var(--bg-alt);
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+.pill .dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* --- Stat --- */
+.stat-num {
+  font-family: "Geist", sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  line-height: 0.9;
+}
+
+/* --- Accent emphasis --- */
+.accent-text { color: var(--accent); }
+.dim { color: var(--ink-mute); }
+
+/* --- Quote --- */
+.quote-body {
+  font-family: "Geist", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.45;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+@media (min-width: 768px) {
+  .quote-body { font-size: 20px; }
+}
+
+/* --- Offer row --- */
+.offer-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  padding: 28px 0;
+  border-top: 1px solid var(--rule);
+}
+.offer-row:last-child { border-bottom: 1px solid var(--rule); }
+@media (min-width: 768px) {
+  .offer-row {
+    grid-template-columns: 80px 1fr 200px;
+    gap: 24px;
+    padding: 36px 0;
+    align-items: baseline;
+  }
+}
+.offer-row .offer-num {
+  font-family: "Geist Mono", monospace;
+  font-size: 12px;
+  color: var(--ink-mute);
+  padding-top: 6px;
+}
+
+/* --- References row --- */
+.refs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px 32px;
+}
+@media (min-width: 768px) {
+  .refs { grid-template-columns: repeat(4, 1fr); gap: 16px; }
+}
+.refs > div {
+  font-family: "Geist", sans-serif;
+  font-weight: 500;
+  font-size: 32px;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+}
+@media (min-width: 768px) {
+  .refs > div { font-size: 44px; }
+}
+
+/* --- Full-bleed hero photo (breaks container on the right) --- */
+.bleed-right {
+  position: relative;
+}
+@media (min-width: 1024px) {
+  .bleed-right {
+    margin-right: calc(50% - 50vw);
+    max-width: none;
+  }
+}
+
+/* --- Marquee for references --- */
+.marquee {
+  display: flex;
+  gap: 48px;
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.marquee-track {
+  display: flex;
+  gap: 80px;
+  align-items: center;
+  flex-shrink: 0;
+  animation: marquee 28s linear infinite;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-item {
+  font-family: "Geist", sans-serif;
+  font-weight: 500;
+  font-size: 56px;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  white-space: nowrap;
+}
+@media (min-width: 768px) {
+  .marquee-item { font-size: 96px; }
+}
+.marquee-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+/* --- Manifesto block --- */
+.manifesto {
+  font-family: "Geist", sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 1.0;
+}
+
+/* --- Reveal --- */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 800ms cubic-bezier(0.2, 0.7, 0.2, 1),
+              transform 800ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal.in { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}

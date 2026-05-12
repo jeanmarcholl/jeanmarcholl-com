@@ -1,0 +1,16 @@
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.idea/
+.vscode/
+
+# Firebase
+.firebase/
+firebase-debug.log
+*.log
+
+# Node (if you ever add a build step)
+node_modules/
+npm-debug.log*
