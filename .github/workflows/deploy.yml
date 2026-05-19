@@ -15,6 +15,6 @@ jobs:
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
-          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_TAEKWONDO_NEUILLY }}
-          projectId: taekwondo-neuilly
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_JEANMARCHOLL_COM }}
+          projectId: jeanmarcholl-com
           channelId: live
